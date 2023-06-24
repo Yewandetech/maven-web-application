@@ -8,19 +8,19 @@ node{
   }
   stage('Build'){
     sh "echo creating build artifacts"
-    nodejs(nodeJSInstallationName: 'nodejs17') {
+    nodejs(nodeJSInstallationName: 'nodejs20') {
         sh 'npm install'
     }
   }
   stage('Quality'){
     sh "echo CodeQualityReport"
-    nodejs(nodeJSInstallationName: 'nodejs17') {
+    nodejs(nodeJSInstallationName: 'nodejs20') {
         sh 'npm run sonar'
     }
   }
     stage('UploadArtifacts'){
     sh "echo npm packages uploaded"
-    nodejs(nodeJSInstallationName: 'nodejs17') {
+    nodejs(nodeJSInstallationName: 'nodejs20') {
         //sh 'npm publish'
         // Jenkins nexus intergration 
         // password = admin123  username = admin 
@@ -30,7 +30,7 @@ node{
 
   stage('deployment'){
     sh "echo Deploying applications"
-    nodejs(nodeJSInstallationName: 'nodejs17') {
+    nodejs(nodeJSInstallationName: 'nodejs20') {
         sh 'npm start'
     }
   }
